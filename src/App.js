@@ -64,10 +64,16 @@ function App() {
     setIndex((prev) => (prev + 1) % wallpapers.length);
   };
 
-  const downloadWallpaper = () => {
+const downloadWallpaper = () => {
   const imageUrl = wallpapers[index];
-  window.open(imageUrl, '_blank');
+  const link = document.createElement('a');
+  link.href = imageUrl;
+  link.download = `mahi-wallpaper-${index + 1}`; // Optional: name the file
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 };
+
 
 
   return (
